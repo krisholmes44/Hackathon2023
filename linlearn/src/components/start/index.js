@@ -1,0 +1,121 @@
+// import React, { useState } from 'react';
+// import Main from '../Home';
+
+// function StartPage() {
+//   const [name, setName] = useState('');
+//   const [showMain, setShowMain] = useState(false);
+
+//   const handleNameChange = (event) => {
+//     setName(event.target.value);
+//   };
+
+//   const handleStartClick = () => {
+//     setShowMain(true);
+//   };
+
+//   if (showMain) {
+//     return <Main name={name} />;
+//   }
+
+//   return (
+//     <div>
+//       <h1>Welcome to the Unknown</h1>
+//       <p>{`Are you ready to enter the unknown, ${name}?`}</p>
+//       <label htmlFor="name-input">Name:</label>
+//       <input
+//         id="name-input"
+//         type="text"
+//         value={name}
+//         onChange={handleNameChange}
+//       />
+//       <button onClick={handleStartClick}>Start</button>
+//     </div>
+//   );
+// }
+
+// export default StartPage;
+
+import "../../styles/Start.css"
+import React, { useState, useEffect, useRef } from 'react';
+import Main from '../Home';
+import Typewriter from 'typewriter-effect';
+import TOPOLOGY from 'vanta/dist/vanta.topology.min';
+
+const StartPage = () => {
+  const [name, setName] = useState('');
+  const [showMain, setShowMain] = useState(false);
+  const [showButton, setButton] = useState(false);
+  const [vantaEffect, setVantaEffect] = useState(null);
+
+  const handleNameChange = (event) => {
+    setName(event.target.value);
+  };
+
+  const handleStartClick = () => {
+    setShowMain(true);
+  };
+
+  const toggleHeader = () => setButton((prev) => !prev);
+
+  useEffect(() => {
+    setTimeout(toggleHeader, 3000);
+  }, []);
+
+  const myRef = useRef(null);
+
+  useEffect(() => {
+    if (!vantaEffect) {
+      setVantaEffect(
+        TOPOLOGY({
+          el: myRef.current,
+          color: 0x3bcb20,
+          backgroundColor: 0xd0d0d,
+        })
+      );
+    }
+    return () => {
+      if (vantaEffect) vantaEffect.destroy();
+    };
+  }, [vantaEffect]);
+
+  if (showMain) {
+    return <Main name={name} />;
+  }
+
+  return (
+    <div ref={myRef} className="landing" id="animation" >
+      <div className="center">
+        <div className="typing">
+          <Typewriter
+            speed={5}
+            onInit={(typewriter) => {
+              typewriter
+               
+              .typeString("Are you ready to enter the unknown?")
+              .pauseFor(2000)
+              .deleteAll()
+              .typeString("Good Luck....")
+              .pauseFor(1000)
+              .start();
+                
+            }}
+          />
+          </div>
+          <div className="input">
+          <label htmlFor="name-input">Display Name:  </label>
+          <input
+            id="name-input"
+            type="text"
+            value={name}
+            autocomplete="off" 
+            onChange={handleNameChange}
+          />
+          <br />
+          <button onClick={handleStartClick} className="btn" type="button">  → </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default StartPage;

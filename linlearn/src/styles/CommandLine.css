@@ -1,0 +1,35 @@
+#nameLin{
+    color: rgb(17, 246, 86);
+}
+#atLin{
+    color: red;
+}
+#gameLin{
+    color: red;
+}
+.CommandLine{
+    color:greenyellow;
+    background-color: black;
+    font-family: 'Source Code Pro', monospace;
+
+}
+.inputCL{
+    background-color: black;
+    border: 0;
+    color: white;
+}
+input {
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: groove;
+    background-color: #000000;
+    font-family: 'Source Code Pro', monospace;
+  }
+  
+  .no-outline:focus {
+    outline: none;
+  }
+  textarea:focus, input:focus{
+    outline: none;
+}
