@@ -10,5 +10,5 @@ router.register(r'username', UserNameViewSet)
 
 urlpatterns = [
    path('', include(router.urls)),
-   #path('', views.index, name='index')
+   path('', views.index, name='index')
 ]
