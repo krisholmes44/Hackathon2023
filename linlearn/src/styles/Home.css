@@ -6,6 +6,13 @@
     
 }
 .firstRender{
-    color: rgb(71, 239, 180);
+    color: rgb(37, 230, 88);
    
+}
+
+.end{
+    height: 100vh;
+    align-items: center;
+    font-size: 100px;
+
 }
