@@ -35,14 +35,14 @@
 
 // export default StartPage;
 
-import "../../styles/Start.css"
-import React, { useState, useEffect, useRef } from 'react';
-import Main from '../Home';
-import Typewriter from 'typewriter-effect';
-import TOPOLOGY from 'vanta/dist/vanta.topology.min';
+import "../../styles/Start.css";
+import React, { useState, useEffect, useRef } from "react";
+import Main from "../Home";
+import Typewriter from "typewriter-effect";
+import TOPOLOGY from "vanta/dist/vanta.topology.min";
 
 const StartPage = () => {
-  const [name, setName] = useState('');
+  const [name, setName] = useState("");
   const [showMain, setShowMain] = useState(false);
   const [showButton, setButton] = useState(false);
   const [vantaEffect, setVantaEffect] = useState(null);
@@ -83,35 +83,37 @@ const StartPage = () => {
   }
 
   return (
-    <div ref={myRef} className="landing" id="animation" >
+    <div ref={myRef} className="landing" id="animation">
       <div className="center">
         <div className="typing">
           <Typewriter
             speed={5}
             onInit={(typewriter) => {
               typewriter
-               
-              .typeString("Are you ready to enter the unknown?")
-              .pauseFor(2000)
-              .deleteAll()
-              .typeString("Good Luck....")
-              .pauseFor(1000)
-              .start();
-                
+
+                .typeString("Are you ready to enter the unknown?")
+                .pauseFor(2000)
+                .deleteAll()
+                .typeString("Good Luck....")
+                .pauseFor(1000)
+                .start();
             }}
           />
-          </div>
-          <div className="input">
-          <label htmlFor="name-input">Display Name:  </label>
+        </div>
+        <div className="input">
+          <label htmlFor="name-input">Display Name: </label>
           <input
             id="name-input"
             type="text"
             value={name}
-            autocomplete="off" 
+            autoComplete="off"
             onChange={handleNameChange}
           />
           <br />
-          <button onClick={handleStartClick} className="btn" type="button">  → </button>
+          <button onClick={handleStartClick} className="btn" type="button">
+            {" "}
+            →{" "}
+          </button>
         </div>
       </div>
     </div>

@@ -1,17 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CL from "../commandLine/CL";
 import Output from "../output";
 import "../../styles/Home.css";
 import Help from "../commands/commands";
-import LevelOne from "../Levels/LevelOne";
-import LevelTwo from "../Levels/LevelTwo";
 import Hint from "../commands/Hint";
 import Solve from "../commands/Solve";
+import Art from "../Levels/Art";
 
 function Main(props) {
   const [outputArray, setOutputArray] = useState([]);
   const [level, setLevel] = useState(1);
   const [input, setInput] = useState("");
+  const [levelOneRendered, setLevelOneRendered] = useState(false);
 
   const handleUserText = (text) => {
     text = text.trim().toLowerCase();
@@ -28,6 +28,7 @@ function Main(props) {
       return "Unknown command. Type 'help' for a list of available commands.";
     }
   };
+
   const handleInput = (input) => {
     input = input.trim().toLowerCase();
     if (input === "clear") {
@@ -41,6 +42,26 @@ function Main(props) {
   const handleClear = () => {
     setOutputArray([]);
   };
+
+  useEffect(() => {
+    if (level === 1 && !levelOneRendered) {
+      setLevelOneRendered(true);
+    }
+  }, [level, levelOneRendered]);
+
+  if (levelOneRendered) {
+    return (
+      <div className="Home">
+        <Art />
+        <Output
+          outputArray={outputArray}
+          onClear={handleClear}
+          name={props.name}
+        />
+        <CL name={props.name} onInput={handleInput} />
+      </div>
+    );
+  }
 
   if (level < 5) {
     return (
