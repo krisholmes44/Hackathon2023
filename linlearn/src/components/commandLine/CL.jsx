@@ -3,7 +3,7 @@ import "../../styles/CommandLine.css";
 
 function CL(props) {
   const [inputValue, setInputValue] = useState("");
-
+  let show = props.showCL;
   function handleInputChange(event) {
     setInputValue(event.target.value);
   }
