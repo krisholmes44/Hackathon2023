@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 function Timer(props) {
-  const [seconds, setSeconds] = useState(30);
+  const [seconds, setSeconds] = useState(180);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -28,10 +28,11 @@ function Timer(props) {
         backgroundColor: "transparent",
         padding: "10px",
         fontSize: "24px",
-        color: "red"
+        color: "red",
       }}
     >
-      {minutes}:{remainingSeconds < 10 ? "0" : ""}{remainingSeconds}
+      {minutes}:{remainingSeconds < 10 ? "0" : ""}
+      {remainingSeconds}
     </div>
   );
 }
