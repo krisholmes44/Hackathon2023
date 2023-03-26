@@ -40,6 +40,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Main from '../Home';
 import Typewriter from 'typewriter-effect';
 import TOPOLOGY from 'vanta/dist/vanta.topology.min';
+import Timer from "../Home/Timer";
 import axios from 'axios';
 
 const StartPage = () => {
