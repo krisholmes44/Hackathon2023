@@ -97,14 +97,12 @@ function Main(props) {
         <CL name={props.name} onInput={handleInput} />
       </div>
     );
-  } else if (level === 5) {
+  } else {
     return (
-      <div>
-        <End />
+      <div className="jj">
+        <h1>you win</h1>
       </div>
     );
-  } else {
-    return <></>;
   }
 }
 
