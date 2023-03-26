@@ -9,3 +9,11 @@
     color: rgb(71, 239, 180);
    
 }
+
+.end{
+    height: 100vh;
+    align-items: center;
+    font-size: 50px;
+    color: rgb(255, 38, 0);
+
+}
