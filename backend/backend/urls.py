@@ -17,11 +17,16 @@ from django.contrib import admin
 from django.urls import path, include
 from backend_api import views
 from django.views.generic import TemplateView
+from rest_framework.routers import DefaultRouter
+from backend_api.views import UserNameViewSet
+from backend_api.views import save_user_name
+
+router = DefaultRouter()
+router.register(r'backend', UserNameViewSet, basename='backend')
 
 urlpatterns = [
     path('', TemplateView.as_view(template_name='index.html')),
     path('admin/', admin.site.urls),
-    path('backend/', include('backend_api.urls')),
-    
-
+    path('', include(router.urls)),
+    path('backend/', save_user_name, name='save_user_name'),
 ]

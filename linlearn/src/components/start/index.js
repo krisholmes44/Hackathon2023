@@ -40,6 +40,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Main from '../Home';
 import Typewriter from 'typewriter-effect';
 import TOPOLOGY from 'vanta/dist/vanta.topology.min';
+import axios from 'axios';
 
 const StartPage = () => {
   const [name, setName] = useState('');
@@ -53,6 +54,14 @@ const StartPage = () => {
 
   const handleStartClick = () => {
     setShowMain(true);
+    const now = new Date().toISOString();
+    axios.post('backend/', { username: name, created: now })
+      .then(response => {
+        console.log(response.data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
   const toggleHeader = () => setButton((prev) => !prev);
