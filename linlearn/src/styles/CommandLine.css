@@ -2,15 +2,16 @@
     color: rgb(17, 246, 86);
 }
 #atLin{
-    color: red;
+    color: green;
 }
 #gameLin{
-    color: red;
+    color: green;
 }
 .CommandLine{
     color:greenyellow;
     background-color: black;
     font-family: 'Source Code Pro', monospace;
+    font-size: 14px;
 
 }
 .inputCL{
@@ -26,6 +27,14 @@ input {
     background-color: #000000;
     font-family: 'Source Code Pro', monospace;
   }
+
+  /*pre {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 24px;
+    color: greenyellow;
+    background-color: black;
+    padding: 10px
+  }*/
   
   .no-outline:focus {
     outline: none;

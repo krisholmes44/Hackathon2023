@@ -9,6 +9,7 @@ import Hint from "../commands/Hint";
 import Solve from "../commands/Solve";
 import Timer from "./Timer";
 import GameOver from "../Levels/GameOver";
+import AsciiArt from 'C:\Users\drenm\OneDrive\Documents\GitHub\Hackathon2023\linlearn\src\components\commands\AsciiArt';
 
 function Main(props) {
   const [outputArray, setOutputArray] = useState([]);
@@ -68,8 +69,10 @@ function Main(props) {
         finalTime && <p>Final Time: {finalTime} seconds</p>
       )}
       <CL name={props.name} onInput={handleInput} />
+      <AsciiArt />
     </div>
   );
+
 }
 
 export default Main;

@@ -106,8 +106,7 @@ const StartPage = () => {
               .deleteAll()
               .typeString("Good Luck....")
               .pauseFor(1000)
-              .start();
-                
+              .start();  
             }}
           />
           </div>

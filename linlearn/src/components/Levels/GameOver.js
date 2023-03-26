@@ -15,6 +15,8 @@ function GameOver() {
       document.removeEventListener("keydown", handleKeyDown);
     };
   }, []);
+  
+  
 
   return (
     <div className="game-over-container">
@@ -25,6 +27,28 @@ function GameOver() {
       <div className="matrix-background"></div>
     </div>
   );
+ /* return(
+    <div className="landing" id="animation">
+      <div className ="center">
+        <div className="typing">
+          <Typewriter
+            speed= {5}
+            onInit={(typewriter) => {
+              typewriter
+
+              .typestring("Game Over")
+              .pauseFor(1000)
+              .deleteAll()
+              .typeString("Press Enter to Restart the Game")
+              .pauseFor(1000)
+              .start();
+            }}
+            />
+        </div>
+      </div>
+    </div>
+  ); */
+
 }
 
 export default GameOver;
