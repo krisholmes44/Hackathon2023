@@ -13,8 +13,6 @@ from django.http import JsonResponse
 def index(request):
     return render(request, 'index.html')
 
-
-
 class UserNameViewSet(viewsets.ModelViewSet):
     queryset = UserName.objects.all()
     serializer_class = UserNameSerializer
@@ -26,3 +24,4 @@ def save_user_name(request):
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+

@@ -4,6 +4,8 @@ from django.db import models
 class UserName(models.Model):
     username = models.CharField(max_length=150)
     created= models.DateTimeField(auto_now_add=True) 
+    endTime = models.IntegerField()
 
     def __str__(self):
         return self.username
+    

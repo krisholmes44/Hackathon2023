@@ -28,5 +28,5 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name='index.html')),
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
-    path('backend/', save_user_name, name='save_user_name'),
+    path('backend/', save_user_name, name='save_user_name')
 ]

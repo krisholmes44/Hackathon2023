@@ -56,13 +56,14 @@ const StartPage = () => {
   const handleStartClick = () => {
     setShowMain(true);
     const now = new Date().toISOString();
-    axios.post('backend/', { username: name, created: now })
+    /*axios.post('backend/', { username: name, created: now })
       .then(response => {
         console.log(response.data);
       })
       .catch(error => {
         console.log(error);
       });
+      */
   };
 
   const toggleHeader = () => setButton((prev) => !prev);

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CL from "../commandLine/CL";
 import Output from "../output";
 import "../../styles/Home.css";
@@ -9,11 +9,13 @@ import Hint from "../commands/Hint";
 import Solve from "../commands/Solve";
 import Timer from "./Timer";
 import GameOver from "../Levels/GameOver";
+import axios from "axios";
 
 function Main(props) {
   const [outputArray, setOutputArray] = useState([]);
   const [level, setLevel] = useState(1);
-  const [finalTime, setFinalTime] = useState(null); // Add finalTime state
+  const [finalTime, setFinalTime] = useState(null);
+  const [gameOver, setGameOver] = useState(false);
 
   const handleUserText = (text) => {
     if (text == "help") {
@@ -32,7 +34,7 @@ function Main(props) {
       return "Unknown command. Type 'help' for a list of available commands.";
     }
   };
-  
+
   const handleInput = (input) => {
     input = input.trim().toLowerCase();
     if (input === "clear") {
@@ -45,32 +47,33 @@ function Main(props) {
   const handleClear = () => {
     setOutputArray([]);
   };
-  
+
   const handleTimerFinish = (time) => {
-    console.log("Final Time:", time); // Print final time to the console
-    setFinalTime(time); // Update finalTime when the timer finishes
-    if (time === 0) {
-      console.log("Game over!"); // Print game over message to the console
+    setFinalTime(time);
+    if (time === 0 && !gameOver) {
+      console.log("Game over!");
+      const now = new Date().toISOString();
+      axios
+        .post("backend/", { username: props.name, created: now, endTime: time })
+        .then((response) => {
+          console.log(response.data);
+          setGameOver(true);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
   };
 
   return (
     <div className="Home">
-      <Output
-        outputArray={outputArray}
-        onClear={handleClear}
-        name={props.name}
-      />
+      <Output outputArray={outputArray} onClear={handleClear} name={props.name} />
       <Timer onFinish={handleTimerFinish} />
-      {finalTime === 0 ? (
-        <GameOver />
-      ) : (
-        finalTime && <p>Final Time: {finalTime} seconds</p>
-      )}
+      {gameOver && <GameOver />}
+      {finalTime && <p>Final Time: {finalTime} seconds</p>}
       <CL name={props.name} onInput={handleInput} />
     </div>
   );
 }
 
 export default Main;
-

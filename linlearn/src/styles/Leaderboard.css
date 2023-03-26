@@ -1,0 +1,25 @@
+.Leaderboard {
+    color: green;
+    font-family: 'Digital', sans-serif;
+    background-color: transparent;
+  }
+  
+  .Leaderboard ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .Leaderboard li {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+  }
+  
+  .Leaderboard .username {
+    font-weight: bold;
+  }
+  
+  .Leaderboard .time {
+    font-size: 0.8em;
+  }
