@@ -1,4 +1,5 @@
 import React from "react";
+import End from "../output/End";
 
 function Solve({ level, setLevel, txt }) {
   txt = txt.slice(6).trim().toLowerCase(); // trim and convert txt to lowercase
@@ -77,11 +78,7 @@ function Solve({ level, setLevel, txt }) {
       );
     } else {
       setLevel(5);
-      return (
-        <div>
-          <p> congratulations you solved the level 4 problem </p>
-        </div>
-      );
+      return <End />;
     }
   } else {
     return <div></div>;
