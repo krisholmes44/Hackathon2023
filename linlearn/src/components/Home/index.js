@@ -11,19 +11,19 @@ import Solve from "../commands/Solve";
 function Main(props) {
   const [outputArray, setOutputArray] = useState([]);
   const [level, setLevel] = useState(1);
+  const [input, setInput] = useState("");
+
   const handleUserText = (text) => {
-    if (text == "help") {
+    text = text.trim().toLowerCase();
+    console.log(text);
+    if (text.length > 6 && text.slice(0, 5) === "solve") {
+      return <Solve level={level} setLevel={setLevel} txt={text} />;
+    } else if (text == "help") {
       return <Help />;
-    } else if (text == "ls") {
-      if (level == 1) {
-        return <LevelOne />;
-      } else if (level == 2) {
-        return <LevelTwo />;
-      }
     } else if (text == "hint") {
       return <Hint level={level} />;
-    } else if (text == "solve") {
-      return <Solve level={level} />;
+    } else if (text == "level") {
+      return <p>You are currently at level {level}</p>;
     } else {
       return "Unknown command. Type 'help' for a list of available commands.";
     }
@@ -34,6 +34,7 @@ function Main(props) {
       setOutputArray([]);
     } else {
       setOutputArray((prevArray) => [...prevArray, handleUserText(input)]);
+      setInput(input);
     }
   };
 
@@ -41,16 +42,24 @@ function Main(props) {
     setOutputArray([]);
   };
 
-  return (
-    <div className="Home">
-      <Output
-        outputArray={outputArray}
-        onClear={handleClear}
-        name={props.name}
-      />
-      <CL name={props.name} onInput={handleInput} />
-    </div>
-  );
+  if (level < 5) {
+    return (
+      <div className="Home">
+        <Output
+          outputArray={outputArray}
+          onClear={handleClear}
+          name={props.name}
+        />
+        <CL name={props.name} onInput={handleInput} />
+      </div>
+    );
+  } else {
+    return (
+      <div className="jj">
+        <h1>you win</h1>
+      </div>
+    );
+  }
 }
 
 export default Main;
