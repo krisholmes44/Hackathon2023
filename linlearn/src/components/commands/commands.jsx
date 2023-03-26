@@ -6,9 +6,6 @@ function Help() {
     <div className="ViewCommands">
       <p>
         <br />
-        <span class="cmds">ls</span> - View the files in the current directory
-        <br />
-        <br />
         <span class="cmds">level</span> - Display the current level
         <br />
         <br />
