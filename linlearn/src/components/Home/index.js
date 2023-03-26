@@ -6,12 +6,15 @@ import Help from "../commands/commands";
 import Hint from "../commands/Hint";
 import Solve from "../commands/Solve";
 import Art from "../Levels/Art";
+import Timer from "./Timer";
+import GameOver from "../Levels/GameOver";
 
 function Main(props) {
   const [outputArray, setOutputArray] = useState([]);
   const [level, setLevel] = useState(1);
   const [input, setInput] = useState("");
   const [levelOneRendered, setLevelOneRendered] = useState(false);
+  const [finalTime, setFinalTime] = useState(null); // Add finalTime state
 
   const handleUserText = (text) => {
     text = text.trim().toLowerCase();
@@ -43,6 +46,14 @@ function Main(props) {
     setOutputArray([]);
   };
 
+  const handleTimerFinish = (time) => {
+    console.log("Final Time:", time); // Print final time to the console
+    setFinalTime(time); // Update finalTime when the timer finishes
+    if (time === 0) {
+      console.log("Game over!"); // Print game over message to the console
+    }
+  };
+
   useEffect(() => {
     if (level === 1 && !levelOneRendered) {
       setLevelOneRendered(true);
@@ -58,6 +69,12 @@ function Main(props) {
           onClear={handleClear}
           name={props.name}
         />
+        <Timer onFinish={handleTimerFinish} />
+        {finalTime === 0 ? (
+          <GameOver />
+        ) : (
+          finalTime && <p>Final Time: {finalTime} seconds</p>
+        )}
         <CL name={props.name} onInput={handleInput} />
       </div>
     );
@@ -71,6 +88,12 @@ function Main(props) {
           onClear={handleClear}
           name={props.name}
         />
+        <Timer onFinish={handleTimerFinish} />
+        {finalTime === 0 ? (
+          <GameOver />
+        ) : (
+          finalTime && <p>Final Time: {finalTime} seconds</p>
+        )}
         <CL name={props.name} onInput={handleInput} />
       </div>
     );

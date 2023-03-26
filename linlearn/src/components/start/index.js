@@ -1,45 +1,15 @@
-// import React, { useState } from 'react';
-// import Main from '../Home';
-
-// function StartPage() {
-//   const [name, setName] = useState('');
-//   const [showMain, setShowMain] = useState(false);
-
-//   const handleNameChange = (event) => {
-//     setName(event.target.value);
-//   };
-
-//   const handleStartClick = () => {
-//     setShowMain(true);
-//   };
-
-//   if (showMain) {
-//     return <Main name={name} />;
-//   }
-
-//   return (
-//     <div>
-//       <h1>Welcome to the Unknown</h1>
-//       <p>{`Are you ready to enter the unknown, ${name}?`}</p>
-//       <label htmlFor="name-input">Name:</label>
-//       <input
-//         id="name-input"
-//         type="text"
-//         value={name}
-//         onChange={handleNameChange}
-//       />
-//       <button onClick={handleStartClick}>Start</button>
-//     </div>
-//   );
-// }
-
-// export default StartPage;
-
 import "../../styles/Start.css";
 import React, { useState, useEffect, useRef } from "react";
 import Main from "../Home";
 import Typewriter from "typewriter-effect";
 import TOPOLOGY from "vanta/dist/vanta.topology.min";
+import "../../styles/Start.css";
+import React, { useState, useEffect, useRef } from "react";
+import Main from "../Home";
+import Typewriter from "typewriter-effect";
+import TOPOLOGY from "vanta/dist/vanta.topology.min";
+import Timer from "../Home/Timer";
+import axios from "axios";
 
 const StartPage = () => {
   const [name, setName] = useState("");
@@ -53,6 +23,15 @@ const StartPage = () => {
 
   const handleStartClick = () => {
     setShowMain(true);
+    const now = new Date().toISOString();
+    axios
+      .post("backend/", { username: name, created: now })
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const toggleHeader = () => setButton((prev) => !prev);
